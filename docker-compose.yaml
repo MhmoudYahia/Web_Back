@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend:
+    image: mahmoudyahia/backend-image:latest
+    ports:
+      - "30036:2026"  # Expose container port 2023 to host
+    networks:
+      - stack_comm
+      - private_network
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"  
+    environment:
+      - NODE_ENV=production
+
+networks:
+  private_network:
+  stack_comm:
+    external: true
+    
+volumes:
+  db_data:
+    driver: local
