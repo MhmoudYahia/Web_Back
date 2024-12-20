@@ -83,4 +83,41 @@ export class MatchService {
       },
     });
   }
+
+  async getMatchSeatStatnus(matchId: number): Promise<any> {
+    const match = await prisma.match.findUnique({
+      where: { id: matchId },
+      include: {
+        stadium: true,
+        tickets: {
+          where: { status: 'RESERVED' }
+        }
+      }
+    });
+
+    if (!match) {
+      throw new Error('Match not found');
+    }
+
+    const totalSeats = match.stadium.capacity;
+    const reservedSeats = match.tickets.length;
+    const vacantSeats = totalSeats - reservedSeats;
+
+    // Create seat map
+    const reservedSeatSet = new Set(match.tickets.map(t => t.seatNo));
+    const seatDetails = Array.from({ length: totalSeats }, (_, i) => {
+      const seatNo = `SEAT-${i + 1}`;
+      return {
+        seatNo,
+        status: reservedSeatSet.has(seatNo) ? 'RESERVED' : 'VACANT'
+      };
+    });
+
+    return {
+      totalSeats,
+      reservedSeats,
+      vacantSeats,
+      seatDetails
+    };
+  }
 }

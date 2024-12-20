@@ -20,7 +20,7 @@ export const requireAuth = (roles: string[]) => {
         return res.status(403).json({ error: 'Insufficient permissions' });
       }
 
-      req.user = decoded;
+      res.locals.user = decoded;
       next();
     } catch (error) {
       res.status(401).json({ error: 'Invalid token' });
