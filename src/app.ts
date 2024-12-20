@@ -9,6 +9,7 @@ import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import { AppError, swaggerSpec } from './common';
 import { authRouter } from './routes/auth.router';
+import { stadiumRouter } from './routes/stadium.router';
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Routes
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/stadiums', stadiumRouter);
 
 // Swagger
 app.use('/api/v1/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

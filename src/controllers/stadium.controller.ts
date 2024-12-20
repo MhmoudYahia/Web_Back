@@ -9,10 +9,14 @@ export class StadiumController {
   }
 
   async createStadium(req: Request, res: Response) {
+    console.log(this);
+    
     try {
       const stadium = await this.stadiumService.create(req.body);
       res.status(201).json(stadium);
     } catch (error) {
+        console.error(error);
+        
       res.status(400).json({ error: 'Failed to create stadium' });
     }
   }
