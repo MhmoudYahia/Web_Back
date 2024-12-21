@@ -18,13 +18,13 @@ router.post(
 
 router.patch(
   '/:id/cancel',
-  requireAuth([Role.FAN]),
+  requireAuth([Role.FAN, Role.ADMIN]),
   ticketController.cancelTicket
 );
 
 router.get(
   '/my-tickets',
-  requireAuth([Role.FAN]),
+  requireAuth([Role.FAN, Role.ADMIN]),
   ticketController.getUserTickets
 );
 
