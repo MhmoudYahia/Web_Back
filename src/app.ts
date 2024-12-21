@@ -13,6 +13,7 @@ import { stadiumRouter } from './routes/stadium.router';
 import { userRouter } from './routes/user.router';
 import { matchRouter } from './routes/match.router';
 import { ticketRouter } from './routes/ticket.router';
+import { teamRouter } from './routes/teams.router';
 
 const app = express();
 
@@ -64,7 +65,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/stadiums', stadiumRouter);
 app.use('/api/v1/matches', matchRouter);
 app.use('/api/v1/tickets', ticketRouter);
-
+app.use('/api/v1/teams', teamRouter);
 // Swagger
 app.use('/api/v1/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
