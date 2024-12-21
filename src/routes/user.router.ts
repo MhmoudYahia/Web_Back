@@ -15,13 +15,13 @@ router.patch(
   userController.approveUser
 );
 
-router.delete('/:id', requireAuth([Role.ADMIN]), userController.deleteUser);
-
 router.patch(
-  '/:id',
+  '/edit-profile',
   requireAuth([Role.FAN]),
   validateRequest(updateProfileSchema),
   userController.updateProfile
 );
+
+router.delete('/:id', requireAuth([Role.ADMIN]), userController.deleteUser);
 
 export { router as userRouter };

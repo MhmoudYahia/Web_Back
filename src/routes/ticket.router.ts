@@ -11,7 +11,7 @@ const ticketController = new TicketController();
 
 router.post(
   '/reserve',
-  requireAuth([Role.FAN]),
+  requireAuth([Role.FAN, Role.ADMIN]),
   validateRequest(createTicketSchema),
   ticketController.reserveTicket
 );

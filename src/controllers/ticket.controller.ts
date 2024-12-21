@@ -16,10 +16,9 @@ export class TicketController {
       );
       res.status(201).json(ticket);
     } catch (error) {
-      res.status(400).json({
-        error:
-          error instanceof Error ? error.message : 'Failed to reserve ticket',
-      });
+      console.error('error', error);
+
+      res.status(400).json({message: 'Failed to reserve ticket'});
     }
   };
 

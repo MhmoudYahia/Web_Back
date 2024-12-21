@@ -45,11 +45,14 @@ model Team {
 }
 
 model Stadium {
-    id       Int     @id @default(autoincrement())
-    name     String  @unique
-    capacity Int
-    location String
-    matches  Match[]
+    id          Int     @id @default(autoincrement())
+    name        String  @unique
+    capacity    Int
+    location    String
+    vipRows     Int
+    seatingRows Int?
+    seatsPerRow Int
+    matches     Match[]
 }
 
 model Official {

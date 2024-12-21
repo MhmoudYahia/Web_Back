@@ -10,6 +10,9 @@ import swaggerUi from 'swagger-ui-express';
 import { AppError, swaggerSpec } from './common';
 import { authRouter } from './routes/auth.router';
 import { stadiumRouter } from './routes/stadium.router';
+import { userRouter } from './routes/user.router';
+import { matchRouter } from './routes/match.router';
+import { ticketRouter } from './routes/ticket.router';
 
 const app = express();
 
@@ -57,7 +60,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Routes
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', userRouter);
 app.use('/api/v1/stadiums', stadiumRouter);
+app.use('/api/v1/matches', matchRouter);
+app.use('/api/v1/tickets', ticketRouter);
 
 // Swagger
 app.use('/api/v1/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

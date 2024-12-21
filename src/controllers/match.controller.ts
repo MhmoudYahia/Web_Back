@@ -6,6 +6,11 @@ export class MatchController {
 
   constructor() {
     this.matchService = new MatchService();
+    this.createMatch = this.createMatch.bind(this);
+    this.getMatches = this.getMatches.bind(this);
+    this.getMatchById = this.getMatchById.bind(this);
+    this.updateMatch = this.updateMatch.bind(this);
+    this.getMatchSeatStatus = this.getMatchSeatStatus.bind(this);
   }
 
   async createMatch(req: Request, res: Response) {
@@ -13,6 +18,7 @@ export class MatchController {
       const match = await this.matchService.create(req.body);
       res.status(201).json(match);
     } catch (error) {
+      console.error(error);
       res.status(400).json({ error: 'Failed to create match' });
     }
   }

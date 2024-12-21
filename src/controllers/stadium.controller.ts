@@ -6,10 +6,14 @@ export class StadiumController {
 
   constructor() {
     this.stadiumService = new StadiumService();
+    this.createStadium = this.createStadium.bind(this);
+    this.getStadiums = this.getStadiums.bind(this);
+    this.getStadiumById = this.getStadiumById.bind(this);
+    this.updateStadium = this.updateStadium.bind(this);
+    this.deleteStadium = this.deleteStadium.bind(this);
   }
 
   async createStadium(req: Request, res: Response) {
-    console.log(this);
     
     try {
       const stadium = await this.stadiumService.create(req.body);

@@ -4,7 +4,7 @@ import { Role, User } from '@prisma/client';
 export class UserService {
   async approveUser(userId: number, newRole: Role): Promise<User> {
     return prisma.user.update({
-      where: { id: userId },
+      where: { id: +userId },
       data: { role: newRole }
     });
   }
